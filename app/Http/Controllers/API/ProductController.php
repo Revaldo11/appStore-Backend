@@ -63,3 +63,9 @@ class ProductController extends Controller
         );
     }
 }
+
+// $file = $request->file('file');
+// $path = url('storage') . '/gallery/' . $file->store('gallery', 'public');
+// dd($path);
+// $file = $request->file('file');
+// $path = $file->store('gallery');
