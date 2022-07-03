@@ -19,7 +19,7 @@ class ProductCategoryController extends Controller
             $query = ProductCategory::query();
             return DataTables::of($query)
                 ->addColumn('action', function ($item) {
-                    return '<a href="' . route('dashboard.category.edit', $item->id) . '" class="btn btn-primary btn-sm"><i class="fas fa-edit"></i></a>';
+                    return '<a class="inline-block px-2 py-1 m-1 text-black transition duration-500 bg-gray-700 border border-gray-700 rounded-md select-none ease hover:bg-gray-800 focus:outline-none focus:shadow-outline" href="' . route('dashboard.category.edit', $item->id) . '">Edit</a>';
                 })
                 ->rawColumns(['action'])
                 ->make(true);
@@ -34,7 +34,7 @@ class ProductCategoryController extends Controller
      */
     public function create()
     {
-        //
+        return view('pages.dashboard.category.create');
     }
 
     /**
@@ -45,7 +45,9 @@ class ProductCategoryController extends Controller
      */
     public function store(ProductCategoryRequest $request)
     {
-        //
+        $data = $request->all();
+        ProductCategory::create($data);
+        return redirect()->route('dashboard.category.index')->with('success', 'Category created successfully');
     }
 
     /**

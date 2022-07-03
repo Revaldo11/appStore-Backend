@@ -37,12 +37,12 @@
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <div class="mb-10">
                 <a href="{{ route('dashboard.category.create') }}"
-                    class="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded shadow-lg">
+                    class="px-4 py-2 font-bold border border-gray-900 text-black bg-red rounded shadow-lg hover:bg-green-700">
                     + Create Category
                 </a>
             </div>
             <div class="oveflow-hidden shadow sm:rounded-md">
-                <div class="px-4 py-5 bg-white sm:p-6">
+                <div class="px-4 py-5 mt-3 bg-white sm:p-6">
                     <table id="crudTable" class="w-full table-auto">
                         <thead>
                             <tr>
@@ -51,10 +51,11 @@
                                 <th>Action</th>
                             </tr>
                         </thead>
-                        <tbody>
-                        </tbody>
+                        <tbody></tbody>
                     </table>
                 </div>
             </div>
         </div>
 </x-app-layout>
+
+bg-red-500 hover:bg-green-700 border border-gray-700 text-black font-bold py-2 px-3 rounded
