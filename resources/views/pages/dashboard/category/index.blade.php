@@ -37,7 +37,7 @@
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <div class="mb-10">
                 <a href="{{ route('dashboard.category.create') }}"
-                    class="px-4 py-2 font-bold border border-gray-900 text-black bg-red rounded shadow-lg hover:bg-green-700">
+                    class="px-4 py-2 font-bold border border-gray-900 text-white bg-green-500 rounded shadow-lg hover:bg-green-700">
                     + Create Category
                 </a>
             </div>
@@ -57,5 +57,3 @@
             </div>
         </div>
 </x-app-layout>
-
-bg-red-500 hover:bg-green-700 border border-gray-700 text-black font-bold py-2 px-3 rounded

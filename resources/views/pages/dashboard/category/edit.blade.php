@@ -1,7 +1,7 @@
 <x-app-layout>
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-            Category &raquo; Create
+            Category &raquo; Edit
         </h2>
     </x-slot>
 
@@ -22,13 +22,15 @@
                         </ul>
                     </div>
                 @endif
-                <form action="{{ route('dashboard.category.store') }}" method="post" enctype="multipart/form-data">
+                <form action="{{ route('dashboard.category.update', $item->id) }}" method="post"
+                    enctype="multipart/form-data">
                     @csrf
+                    @method('PUT')
                     <div class="flex flex-wrap mb-6 -mx-3">
                         <div class="w-full px-3">
                             <label class="block mb-2 text-xs font-bold tracking-wide text-gray-700 uppercase"
                                 for="grid-last-name">Name</label>
-                            <input value="{{ old('name') }}" type="text" name="name"
+                            <input value="{{ old('name') ?? $item->name }}" type="text" name="name"
                                 class="block w-full px-4 py-3 leading-tight text-gray-700 bg-gray-200 border border-gray-200 rounded appearance-none focus:putline-none focus:bg-white focus:border-gray-500"
                                 id="grid-last-name" placeholder="Category Name">
                         </div>
@@ -37,7 +39,7 @@
                         <div class="w-full px-3 text-right">
                             <button class="bg-red-600 px-4 py-2 text-white rounded shadow-lg font-bold hover:bg-red-700"
                                 type="submit">
-                                Save
+                                Update
                             </button>
                         </div>
                     </div>

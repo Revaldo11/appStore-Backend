@@ -19,7 +19,15 @@ class ProductCategoryController extends Controller
             $query = ProductCategory::query();
             return DataTables::of($query)
                 ->addColumn('action', function ($item) {
-                    return '<a class="inline-block px-2 py-1 m-1 text-black transition duration-500 bg-gray-700 border border-gray-700 rounded-md select-none ease hover:bg-gray-800 focus:outline-none focus:shadow-outline" href="' . route('dashboard.category.edit', $item->id) . '">Edit</a>';
+                    return '<a class="inline-block px-2 py-1 m-1 text-black transition duration-500 bg-gray-700 border border-gray-700 rounded-md 
+                    select-none ease hover:bg-gray-800 focus:outline-none focus:shadow-outline" href="' . route('dashboard.category.edit', $item->id) . '">
+                    Edit</a>
+                    <form class="inline-block" action="' . route('dashboard.category.destroy', $item->id) . '" method="POST" >
+                    <button class="border border-red-500 bg-red-500 text-black rounded-md px2 py-1 m-2 transition duration-500 ease select-none ">
+                    Delete
+                    </button>
+                    ' . method_field('DELETE') . csrf_field() . '
+                    </form>';
                 })
                 ->rawColumns(['action'])
                 ->make(true);
@@ -69,7 +77,9 @@ class ProductCategoryController extends Controller
      */
     public function edit(ProductCategory $category)
     {
-        //
+        return view('pages.dashboard.category.edit', [
+            'item' => $category
+        ]);
     }
 
     /**
@@ -81,7 +91,9 @@ class ProductCategoryController extends Controller
      */
     public function update(ProductCategoryRequest $request, ProductCategory $category)
     {
-        //
+        $data = $request->all();
+        $category->update($data);
+        return redirect()->route('dashboard.category.index')->with('success', 'Category updated successfully');
     }
 
     /**
@@ -92,6 +104,7 @@ class ProductCategoryController extends Controller
      */
     public function destroy(ProductCategory $category)
     {
-        //
+        $category->delete();
+        return redirect()->route('dashboard.category.index')->with('success', 'Category deleted successfully');
     }
 }
