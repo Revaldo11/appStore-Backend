@@ -78,7 +78,11 @@ class ProductController extends Controller
      */
     public function edit(Product $product)
     {
-        //
+        $categories = ProductCategory::all();
+        return view('pages.dashboard.product.edit', [
+            'item' => $product,
+            'categories' => $categories
+        ]);
     }
 
     /**
@@ -90,7 +94,9 @@ class ProductController extends Controller
      */
     public function update(ProductRequest $request, Product $product)
     {
-        //
+        $data = $request->all();
+        $product->update($data);
+        return redirect()->route('dashboard.product.index')->with('success', 'Product updated successfully');
     }
 
     /**
@@ -101,6 +107,7 @@ class ProductController extends Controller
      */
     public function destroy(Product $product)
     {
-        //
+        $product->delete();
+        return redirect()->route('dashboard.product.index')->with('success', 'Product deleted successfully');
     }
 }
